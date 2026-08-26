@@ -1,0 +1,20 @@
+name: Start VeloCut Bootstrap
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'KICK.md'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start bootstrap workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run bootstrap.yml --repo "${{ github.repository }}" --ref main
