@@ -139,11 +139,12 @@ jobs:
 
       - name: Save imported source in clean repository
         run: |
-          rm -f .github/workflows/bootstrap.yml
+          rm -f .github/workflows/bootstrap.yml .github/workflows/auto-start.yml .github/workflows/kick.yml KICK.md
           git config user.name "VeloCut Builder"
           git config user.email "actions@users.noreply.github.com"
           git add -A
           git commit -m "Import VeloCut v0.4.8 clean source" || true
+          git pull --rebase origin main
           git push origin main
 
       - name: Prepare v0.4.2 patcher
